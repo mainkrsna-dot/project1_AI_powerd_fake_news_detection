@@ -39,7 +39,7 @@ jobs:
         run: npm run build
         env:
           CI: false
-          REACT_APP_BACKEND_URL: http://127.0.0.1:8000
+          REACT_APP_BACKEND_URL: https://project1-ai-powerd-fake-news-detection.onrender.com
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
