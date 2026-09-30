@@ -31,9 +31,9 @@ load_dotenv(ROOT_DIR / ".env")
 # MongoDB
 # ============================================================
 
-mongo_url = os.environ["MONGO_URL"]
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ["DB_NAME"]]
+mongo_url = os.getenv("MONGO_URL")
+client = AsyncIOMotorClient(mongo_url) if mongo_url else None
+db = client[os.getenv("DB_NAME", "fake_news_db")] if client else None
 
 
 # ============================================================
@@ -63,10 +63,7 @@ logger = logging.getLogger(__name__)
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-if not OPENAI_API_KEY:
-    raise RuntimeError("OPENAI_API_KEY is not configured")
-
-openai_client = AsyncOpenAI(api_key=OPENAI_API_KEY)
+openai_client = AsyncOpenAI(api_key=OPENAI_API_KEY) if OPENAI_API_KEY else None
 
 NEWS_API_KEY = os.getenv("NEWS_API_KEY")
 
@@ -1698,4 +1695,5 @@ app.add_middleware(
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
-    client.close()
+    if client:
+        client.close()
