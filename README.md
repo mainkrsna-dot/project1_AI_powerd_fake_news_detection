@@ -8,7 +8,7 @@ The application supports text, image, and video analysis, claim verification, co
 
 **Frontend:** https://mainkrsna-dot.github.io/project1_AI_powerd_fake_news_detection/
 
-> **Note:** The GitHub Pages deployment hosts the React frontend. AI analysis requires the FastAPI backend. The project also includes a local Demo Mode for development and demonstration without a live OpenAI API call.
+> **Deployment:** The React frontend is hosted on GitHub Pages and the FastAPI backend is deployed on Render. The public deployment currently runs in Demo Mode, so the complete application workflow is available without requiring paid OpenAI API credits.
 
 ## Screenshots
 
@@ -182,7 +182,7 @@ The FastAPI backend provides endpoints for:
 
 The React frontend is deployed to GitHub Pages using GitHub Actions. The workflow builds the application from `frontend/` and publishes the generated production build.
 
-The backend is designed to run separately from the static GitHub Pages frontend.
+The FastAPI backend is deployed separately on Render and is connected to the GitHub Pages frontend through the production API URL.
 
 ## Important Note
 
@@ -190,8 +190,7 @@ This project is an **AI-assisted analysis tool**, not a guaranteed factual truth
 
 ## Future Improvements
 
-- Deploy the FastAPI backend to a public cloud service.
-- Connect the deployed frontend to the public backend.
+- Enable live OpenAI analysis with production API configuration.
 - Add external fact-checking and news-source verification.
 - Improve model evaluation with a labeled benchmark dataset.
 - Add authentication and persistent user-specific history.
